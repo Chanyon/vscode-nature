@@ -1,0 +1,74 @@
+{
+  "name": "vscode-nature",
+  "displayName": "vscode-nature",
+  "description": "nature language support (syntax highlighting, formatter, snippets) for Visual Studio Code",
+  "icon": "",
+  "version": "0.1.0",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.79.0"
+  },
+  "bugs": {
+    "url": "https:github.com/chanyon/vscode-nature"
+  },
+  "keywords": [
+    "nature language",
+    "nature",
+    "extension",
+    "naturelang"
+  ],
+  "categories": [
+    "Snippets",
+    "Programming Languages"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+      "snippets": [
+        {
+          "language": "nature",
+          "path": "./snippets/snippets.json"
+        }
+      ],
+      "languages": [
+        {
+          "id": "nature",
+          "extensions": [
+            ".n"
+          ],
+          "configuration": "./language-configuration.json"
+        }
+      ],
+      "grammars": [
+        {
+          "language": "nature",
+          "scopeName": "source.n",
+          "path": "./syntaxes/nature.tmLanguage.json"
+        }
+      ] 
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "pnpm run compile && pnpm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/mocha": "^10.0.0",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.79.0",
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
+    "@vscode/test-electron": "^2.1.5",
+    "eslint": "^8.24.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "web-tree-sitter": "^0.20.8"
+  }
+}

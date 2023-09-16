@@ -1,0 +1,8 @@
+{
+  "snippet.assert": {
+    "body": ["assert(${1:expression})"],
+		"description": "Code snippet for testing 'assert'",
+		"prefix": "as",
+		"scope": "nature"
+  }
+}
