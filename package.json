@@ -2,7 +2,7 @@
   "name": "vscode-nature",
   "displayName": "vscode-nature",
   "description": "nature language support (syntax highlighting, formatter, snippets) for Visual Studio Code",
-  "icon": "",
+  "icon": "./icon.png",
   "version": "0.1.0",
   "license": "MIT",
   "engines": {
@@ -10,6 +10,10 @@
   },
   "bugs": {
     "url": "https:github.com/chanyon/vscode-nature"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chanyon/vscode-nature"
   },
   "keywords": [
     "nature language",
@@ -24,28 +28,28 @@
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
-      "snippets": [
-        {
-          "language": "nature",
-          "path": "./snippets/snippets.json"
-        }
-      ],
-      "languages": [
-        {
-          "id": "nature",
-          "extensions": [
-            ".n"
-          ],
-          "configuration": "./language-configuration.json"
-        }
-      ],
-      "grammars": [
-        {
-          "language": "nature",
-          "scopeName": "source.n",
-          "path": "./syntaxes/nature.tmLanguage.json"
-        }
-      ] 
+    "snippets": [
+      {
+        "language": "nature",
+        "path": "./snippets/snippets.json"
+      }
+    ],
+    "languages": [
+      {
+        "id": "nature",
+        "extensions": [
+          ".n"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "nature",
+        "scopeName": "source.n",
+        "path": "./syntaxes/nature.tmLanguage.json"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "pnpm run compile",
@@ -53,7 +57,9 @@
     "watch": "tsc -watch -p ./",
     "pretest": "pnpm run compile && pnpm run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "build": "tsup",
+    "pack": "vsce package --no-dependencies --allow-star-activation"
   },
   "devDependencies": {
     "@types/glob": "^8.0.0",
@@ -66,7 +72,10 @@
     "eslint": "^8.24.0",
     "glob": "^8.0.3",
     "mocha": "^10.0.0",
-    "typescript": "^4.8.4"
+    "tsup": "^7.2.0",
+    "typescript": "^4.8.4",
+    "vite": "^4.4.9",
+    "vsce": "^2.15.0"
   },
   "dependencies": {
     "web-tree-sitter": "^0.20.8"

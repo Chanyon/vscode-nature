@@ -1,4 +1,4 @@
-import path = require("path");
+import * as path from "path";
 import * as vscode from "vscode";
 import * as Parser from "web-tree-sitter";
 
@@ -11,7 +11,6 @@ export default class SematicTokensProvider implements vscode.DocumentSemanticTok
       ).then(lang => {
         this.parser = new Parser();
         this.parser.setLanguage(lang);
-        console.log(this.parser);
       });
     });
   }
