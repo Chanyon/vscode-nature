@@ -1,0 +1,213 @@
+//hello width world!
+/*
+  bytes
+*/
+/**
+  //hello
+  //hi
+  //win!win!
+  //....
+*/
+
+"string"
+"world-hello_win!"
+"'12345_12345_abc'0x123450o123ob000111"
+12345
+123_456_789
+0x12345
+0o123
+0b000111
+1.01e+2
+1.01e-2
+
+string a = nil;
+i8 a = -1;
+int a = 0;
+u8 a = 1;
+bool a = true/false;
+f32 a = 0.1;
+f64 a = 0xfffffff.1;
+a := 1
+var a = <= || >= != == > <;
+var foo = 1 << 1 || >> 1 <<= 1 >>= 1 a | 1 || 1 & 1; 
+var FOO_FOO_3 = 3;
+var FOO = 0;
+
+
+
+
+var f = fn(int a, int b): int {
+    return a + b
+}
+fn fib(int n):int {
+    if n <= 1 {
+        return n
+    }
+    return fib(n - 1) + fib(n - 2)
+}
+var result = fib(10)
+println(result)
+
+type sockaddr_in = struct { // Occupies 8 bytes on linux_amd64
+    u16 sin_family
+    u16 sin_port
+    u32 sin_addr
+
+    [u8,8] sin_zero
+}
+type sockaddr_in6 = struct {
+    u8 sin6_len
+    u8 sin6_family
+    u16 sin6_port
+    u32 sin6_flowinfo
+    // ipv6 address(128-bit)
+    [u32,4] sin6_addr
+    u32 sin6_scope_id
+}
+type sockaddr_un = struct {
+    u8 sun_len
+    u8 sun_family
+    // 108 bytes
+    [u8,104] sun_path
+}
+
+type sockaddr_t = gen sockaddr_in|sockaddr_un
+
+fn bind(int sockfd, sockaddr_t addr) {
+    // Convert nature struct to C struct
+    cptr p = libc.encode(addr)
+    var len = 16 as cptr // in and unix have a length of 16 bytes
+    call6(SYS_BIND, sockfd as cptr, p, len, 0, 0, 0)
+}
+
+fn bind(int sockfd, sockaddr_in6 addr) {
+    cptr p = libc.encode(addr)
+    var len = 28 as cptr
+    call6(SYS_BIND, sockfd as cptr, p, len, 0, 0, 0)
+}
+
+fn accept(int sockfd, sockaddr_t addr):int {
+    var p = libc.encode(addr)
+    var len = 16
+    ptr<int> len_ptr = &len
+
+    int fd = call6(SYS_ACCEPT, sockfd as cptr, p, len_ptr as cptr, 0, 0, 0)
+
+    // Assign values from p to addr, p will be garbage-collected
+    libc.decode(p, addr)
+    return fd
+}
+
+var addr = syscall.sockaddr_in {
+    sin_family = syscall.AF_INET as u16,
+    sin_addr = 0x00000000,
+    sin_port = libc.htons(8080),
+    sin_zero = [] as [u8,8]
+}
+
+var (pid, err) = try syscall.fork()
+if err.has {
+    return print('fork err: ', err.msg, '\n')
+}
+
+if pid > 0 {
+    // Parent process
+} else {
+    // Child process
+}
+
+int foo = 23
+foo = nil
+
+if foo > 100 {
+    print('foo > 100')
+    
+} else if foo > 20 {
+    print('foo > 20')
+    
+} else {
+    print('else handle')
+}
+
+var sum = 0
+for int i = 1; i <= 100; i += 1 {
+    sum += i
+}
+println('1 +..+100 = ', sum)
+
+var sum = 0
+var i = 0
+for i <= 100 {
+    sum += i
+    i += 1
+}
+
+println('1 +..+100 = ', sum)
+
+var list = [1, 1, 2, 3, 5, 8, 13, 21]
+
+// When iterating over the `list` structure, the variable `v` represents each element in the list.
+for v in list {
+    println(v)
+}
+
+var map = {1:10, 2:20, 3:30, 4:40}
+
+// When iterating over the `map` structure, the variable `k` represents each key in the map.
+for k in map {
+    println(k)
+}
+
+// If you need both the key and value, you can define two variables within the loop parentheses.
+for k,v in iter {
+    println(k, v)
+}
+
+string|null bar = null // v Use a union type declaration to allow bar to have a value of null
+bar = '' // v Union types will be covered in more detail in subsequent sectionso
+[int] baz = [1,2,3,4] // v Declare an empty list
+
+type square = struct {
+    int length
+    int width
+    var area = fn(self s):int {
+        return s.length * s.width + 5
+    }
+}
+
+type box<t> = struct {
+    t width
+    t length
+}
+
+type case_1<t> = (t, t, string)
+case_1<u8> c = (1, 1, "hello world")
+
+type nullable<t> = t|null
+nullable<i8> foo = null
+
+type errorable<t> = t|errort
+
+// Define a generic type numbert and specify its constraints
+type numbert = gen i8|i16|i32|i64|u8|u16|u32|u64|f32|f64
+
+// Use numbert type to declare a function
+fn sum(numbert a, numbert b): numbert {
+    return a + b
+}
+
+fn rem(int dividend, int divisor): int {
+    if (divisor == 0) {
+        throw 'divisor cannot be zero'
+    }
+
+    return dividend % divisor
+}
+module ABC
+import rand // When directly importing the package name, it is equivalent to importing the rand.main module
+import rand.utils.seed // Importing rand@v1.0.1/utils/seed.n
+import "user.n" //
+import rand.utils.seed // Importing rand@v1.0.1/utils/seed.n 
+
+user.register('xiaowei', 'hahaha123')
+user.register('xiaoyou', 'nanana456')
