@@ -14,18 +14,23 @@ export function activate(context: vscode.ExtensionContext) {
     "number",
     "keyword",
     "parameter",
+    "variable",
+    "method",
+    "namespace",
+    "punctuation",
+    "macro"
   ];
-  const modifiers = ["definition", "deprecated", "documentation"];
+  const modifiers = ["definition","declaration", "deprecated", "punctuation", "documentation"];
 
   const selector: vscode.DocumentSelector = {
-    language: "proto",
+    language: "nature",
     scheme: "file"
   };
 
   const legend = new vscode.SemanticTokensLegend(tokenTypes, modifiers);
   const provider = new SematicTokensProvider(legend);
 
-  console.log("--------------------", provider);
+  // console.log("--------------------", provider);
   context.subscriptions.push(
     vscode.languages.registerDocumentSemanticTokensProvider(
       selector,

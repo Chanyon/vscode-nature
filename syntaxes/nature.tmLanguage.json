@@ -11,7 +11,7 @@
       "include": "#operators"
     },
     {
-      "include":"#strings"
+      "include": "#strings"
     },
     {
       "include": "#numbers"
@@ -29,7 +29,7 @@
       "include": "#brackets"
     },
     {
-      "include":"#import-decl"
+      "include": "#import-decl"
     },
     {
       "include": "#module-decl"
@@ -46,20 +46,20 @@
       "patterns": [
         {
           "name": "keyword.storage.n",
-          "match": "\\b(in|break|import|struct|case|else|switch|for|while|type|continue|var|if|return|fn|self|as|is|has|true|false|gen|module|nil)\\b"
+          "match": "\\b(throw|in|break|import|struct|case|else|switch|for|while|type|continue|var|if|return|fn|self|as|is|has|true|false|gen|module|nil)\\b"
         }
       ]
     },
     "types": {
       "patterns": [
         {
-					"name": "storage.type.numeric.n",
-					"match": "(?<!\\.)\\b(i(8|16|32|nt|64|128|256)|u(8|16|32|int|64|128|256)|f(32|64|80|128)|cptr)\\b"
-				},
-				{
-					"name": "storage.type.$1.n",
-					"match": "(?<!\\.)\\b(bool|string|any|null|cptr|nil)\\b"
-				}
+          "name": "storage.type.numeric.n",
+          "match": "(?<!\\.)\\b(i(8|16|32|nt|64|128|256)|u(8|16|32|int|64|128|256)|f(32|64|80|128)|cptr)\\b"
+        },
+        {
+          "name": "storage.type.$1.n",
+          "match": "(?<!\\.)\\b(bool|string|any|null|cptr|nil)\\b"
+        }
       ]
     },
     "operators": {
@@ -80,7 +80,7 @@
           "name": "keyword.operator.assignment.n",
           "match": "(:=|=)"
         },
-          {
+        {
           "name": "keyword.operator.bitwise.n",
           "match": "((<<|>>|&|\\^|\\|)=?)"
         }
@@ -190,131 +190,133 @@
       ]
     },
     "brackets": {
-			"patterns": [
-				{
-					"begin": "{",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.definition.bracket.curly.begin.n"
-						}
-					},
-					"end": "}",
-					"endCaptures": {
-						"0": {
-							"name": "punctuation.definition.bracket.curly.end.n"
-						}
-					},
-					"patterns": [
-						{
-							"include": "$self"
-						}
-					]
-				},
-				{
-					"begin": "\\(",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.definition.bracket.round.begin.n"
-						}
-					},
-					"end": "\\)",
-					"endCaptures": {
-						"0": {
-							"name": "punctuation.definition.bracket.round.end.n"
-						}
-					},
-					"patterns": [
-						{
-							"include": "$self"
-						}
-					]
-				},
-				{
-					"begin": "\\[",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.definition.bracket.square.begin.n"
-						}
-					},
-					"end": "\\]",
-					"endCaptures": {
-						"0": {
-							"name": "punctuation.definition.bracket.square.end.n"
-						}
-					},
-					"patterns": [
-						{
-							"include": "$self"
-						}
-					]
-				}
-			]
-		},
+      "patterns": [
+        {
+          "begin": "{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.curly.begin.n"
+            }
+          },
+          "end": "}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.curly.end.n"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "begin": "\\(",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.round.begin.n"
+            }
+          },
+          "end": "\\)",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.round.end.n"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "begin": "\\[",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.square.begin.n"
+            }
+          },
+          "end": "\\]",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.bracket.square.end.n"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        }
+      ]
+    },
     "generic": {
-			"patterns": [
-				{
-					"name": "meta.definition.generic.n",
-					"match": "(?<=[\\w\\s+])(\\<)(\\w+)(\\>)",
-					"captures": {
-						"1": {
-							"name": "punctuation.definition.bracket.angle.begin.n"
-						},
-						"2": {
-							"patterns": [
-								{
-									"include": "#illegal-name"
-								},
-								{
-									"match": "\\w+",
-									"name": "entity.name.generic.n"
-								}
-							]
-						},
-						"3": {
-							"name": "punctuation.definition.bracket.angle.end.n"
-						}
-					}
-				}
-			]
-		},
+      "patterns": [
+        {
+          "name": "meta.definition.generic.n",
+          "match": "(?<=[\\w\\s+])(\\<)(\\w+)(\\>)",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.bracket.angle.begin.n"
+            },
+            "2": {
+              "patterns": [
+                {
+                  "include": "#illegal-name"
+                },
+                {
+                  "match": "\\w+",
+                  "name": "entity.name.generic.n"
+                }
+              ]
+            },
+            "3": {
+              "name": "punctuation.definition.bracket.angle.end.n"
+            }
+          }
+        }
+      ]
+    },
     "import-decl": {
-			"name": "meta.import.n",
-			"begin": "^\\s*(import)\\s+",
-			"beginCaptures": {
-				"1": {
-					"name": "keyword.import.n"
-				}
-			},
-			"end": "([\\w.]+)",
-			"endCaptures": {
-				"1": {
-					"name": "entity.name.import.n"
-				}
-			}
-		},
+      "name": "meta.import.n",
+      "begin": "^\\s*(import)\\s+",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.import.n"
+        }
+      },
+      "end": "([\\w.]+)",
+      "endCaptures": {
+        "1": {
+          "name": "entity.name.import.n"
+        }
+      }
+    },
     "module-decl": {
-			"name": "meta.module.n",
-			"begin": "^\\s*(module)\\s+",
-			"beginCaptures": {
-				"1": {
-					"name": "keyword.module.n"
-				}
-			},
-			"end": "([\\w.]+)",
-			"endCaptures": {
-				"1": {
-					"name": "entity.name.module.n"
-				}
-			}
-		},
+      "name": "meta.module.n",
+      "begin": "^\\s*(module)\\s+",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.module.n"
+        }
+      },
+      "end": "([\\w.]+)",
+      "endCaptures": {
+        "1": {
+          "name": "entity.name.module.n"
+        }
+      }
+    },
     "strings": {
       "patterns": [
         {
           "name": "string.quoted.double.n",
           "begin": "\"",
           "end": "\"",
-          "patterns":[
-            {"include":"#stringcontent"}
+          "patterns": [
+            {
+              "include": "#stringcontent"
+            }
           ]
         }
       ]
@@ -334,46 +336,50 @@
     "numbers": {
       "patterns": [
         {
-					"name": "constant.numeric.exponential.n",
-					"match": "([0-9]+(_?))+(\\.)([0-9]+[eE][-+]?[0-9]+)"
-				},
-				{
-					"name": "constant.numeric.float.n",
-					"match": "([0-9]+(_?))+(\\.)([0-9]+)"
-				},
-				{
-					"name": "constant.numeric.binary.n",
-					"match": "(?:0b)(?:(?:[0-1]+)(?:_?))+"
-				},
-				{
-					"name": "constant.numeric.octal.n",
-					"match": "(?:0o)(?:(?:[0-7]+)(?:_?))+"
-				},
-				{
-					"name": "constant.numeric.hex.n",
-					"match": "(?:0x)(?:(?:[0-9a-fA-F]+)(?:_?))+"
-				},
-				{
-					"name": "constant.numeric.integer.n",
-					"match": "(?:(?:[0-9]+)(?:[_]?))+"
-				}
+          "name": "constant.numeric.exponential.n",
+          "match": "([0-9]+(_?))+(\\.)([0-9]+[eE][-+]?[0-9]+)"
+        },
+        {
+          "name": "constant.numeric.float.n",
+          "match": "([0-9]+(_?))+(\\.)([0-9]+)"
+        },
+        {
+          "name": "constant.numeric.binary.n",
+          "match": "(?:0b)(?:(?:[0-1]+)(?:_?))+"
+        },
+        {
+          "name": "constant.numeric.octal.n",
+          "match": "(?:0o)(?:(?:[0-7]+)(?:_?))+"
+        },
+        {
+          "name": "constant.numeric.hex.n",
+          "match": "(?:0x)(?:(?:[0-9a-fA-F]+)(?:_?))+"
+        },
+        {
+          "name": "constant.numeric.integer.n",
+          "match": "(?:(?:[0-9]+)(?:[_]?))+"
+        }
       ]
     },
     "punctuations": {
-			"patterns": [
-				{
-					"name": "punctuation.accessor.n",
-					"match": "(?:\\.)"
-				},
-				{
-					"name": "punctuation.separator.comma.n",
-					"match": "(?:,)"
-				}
-			]
-		},
+      "patterns": [
+        {
+          "name": "punctuation.accessor.n",
+          "match": "(?:\\.)"
+        },
+        {
+          "name": "punctuation.separator.comma.n",
+          "match": "(?:,)"
+        }
+      ]
+    },
+    "function-call": {
+      "name": "meta.function.call.n",
+      "match": "\\b\\w+\\(\\)"
+    },
     "illegal-name": {
-			"match": "\\d\\w+",
-			"name": "invalid.illegal.n"
-		}
+      "match": "\\d\\w+",
+      "name": "invalid.illegal.n"
+    }
   }
 }

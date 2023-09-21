@@ -2,7 +2,7 @@
   "name": "vscode-nature",
   "displayName": "vscode-nature",
   "description": "nature language support (syntax highlighting, formatter, snippets) for Visual Studio Code",
-  "icon": "./icon.png",
+  "icon": "icon.png",
   "version": "0.1.0",
   "license": "MIT",
   "engines": {
